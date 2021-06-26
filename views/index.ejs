@@ -39,10 +39,10 @@
             </div>
             <div class="card-footer">
                 <p class="card-text"> 
-                    <% if(book.checkedOut) {  %>
+                    <% if(!book.checkedOut) {  %>
                      <input class="btn btn-dark" type="button" value="Check out">
                     <% } %>
-                    <% if(!book.checkedOut) {  %>
+                    <% if(book.checkedOut) {  %>
                     
                     <input class="btn btn-dark" type="button" value="Unavailable" disabled>
                  
