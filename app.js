@@ -10,25 +10,27 @@ app.use('/js', express.static(path.join(__dirname,'node_modules/bootstrap/dist/j
 app.use('/js', express.static(path.join(__dirname,'node_modules/jquery/dist')));
 let books;
 
-axios.get('https://postman-library-api.glitch.me/books')
-  .then(res => {
-    const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
-    console.log('Status Code:', res.status);
-    console.log('Date in Response header:', headerDate);
+function getBooks() {
+    axios.get('https://postman-library-api.glitch.me/books')
+    .then(res => {
+        const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
+        console.log('Status Code:', res.status);
+        console.log('Date in Response header:', headerDate);
 
 
-    books = res.data
+        books = res.data
 
-    for(book of books) {
-      console.log(`Got book with title: ${book.title}, author: ${book.author}`);
-    }
-  })
-  .catch(err => {
-    console.log('Error: ', err.message);
-  });
-
+        for(book of books) {
+        console.log(`Got book with title: ${book.title}, author: ${book.author}`);
+        }
+    })
+    .catch(err => {
+        console.log('Error: ', err.message);
+    });
+}
 // Root route
 app.get("/",  function(req, res) {
+    getBooks();
     res.render("index", {title: "TH Library", books});
 });
 
