@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">.
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title> <%= title %></title>
+</head>
+<body>
+    <header class="jumbotron"> 
+        <div class="container"> 
+            <div class="row row-header"> 
+                <div class="col-12 col-sm-6">
+                    <h1>Triton Hacks Library</h1>
+                    </div>
+                    <div class="col-12 col-sm align-self-center">
+                        <img src="img/logo.jpeg" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        
+        <div class="row row-content justify-content-center">
+
+    <%  books.forEach(function(book) {  %>
+
+           
+        <div class="col-12 col-sm-4">
+            <div class="card border-dark mb-4 h-100 bg-light">
+                <div class="card-header"><%= book.genre %></div>
+                <div class="card-body">
+                <h3 class="card-title"><%= book.title %></h3>
+                <h6 class="card-subtitle mb-2 text-muted">
+                   <%= book.author %> (<%= book.yearPublished %>)     
+            </div>
+            <div class="card-footer">
+                <p class="card-text"> 
+                    <% if(book.checkedOut) {  %>
+                     <input class="btn btn-dark" type="button" value="Check out">
+                    <% } %>
+                    <% if(!book.checkedOut) {  %>
+                    
+                    <input class="btn btn-dark" type="button" value="Unavailable" disabled>
+                 
+                    <% } %>
+                 </p>
+            </div>
+        </div>
+    </div>
+        
+
+    <%  }); %>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+
+
+
+</html>
